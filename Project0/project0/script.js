@@ -9,21 +9,36 @@ const list = document.getElementById('todo-list')
 const itemCountSpan = document.getElementById('item-count')
 const uncheckedCountSpan = document.getElementById('unchecked-count')
 
-let todoList = [];
 let todoCount = 0;
+let uncheckedCount = 0;
 
 function newTodo() 
 {
   addTodo();
-  totalTodos();
 }
 
-function addTodo(item) {
-  todoList.push("new todo item");
-  console.log(todoList);
+function addTodo() {
+    var ul = document.getElementById("todo-list");
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("newItem").value;
+    var listItem = document.createTextNode(inputValue);
+    li.appendChild(listItem);
+
+    if (inputValue === "")
+    {
+      alert("Please add an item");
+    }
+    else
+    {
+      document.getElementById("todo-list").appendChild(li);
+      totalTodos();
+    }
+    document.getElementById("newItem").value = "";
 }
 
 function totalTodos() {
-  todoCount = todoList.length;
+  todoCount++;
   document.getElementById("item-count").innerHTML = todoCount;
+  uncheckedCount++;
+  document.getElementById("unchecked-count").innerHTML = uncheckedCount;
 }
