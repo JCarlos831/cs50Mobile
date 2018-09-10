@@ -7,10 +7,24 @@ const styles = {
 };
 
 class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 0,
+    }
+  }
+
+  increaseCount() {
+    this.setState({ count: this.state.count + 1 })
+  }
+
   render() {
     return (
       <div style={styles}>
-        <h2>{this.props.count}</h2>
+      <div>
+        <button onClick={() => this.increaseCount()}>Increase</button>
+      </div>
+        <h2>{this.state.count}</h2>
       </div>
     )
   }
@@ -18,8 +32,5 @@ class App extends React.Component {
 
 let count = 0
 
-setInterval(
-  function () {
-  render(<App count={count++} />, document.getElementById('root'))},
-    1000
-)
+
+render(<App count={count++} />, document.getElementById('root'))
